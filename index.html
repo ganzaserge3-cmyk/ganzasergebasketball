@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball </title>
+     <!-- ✅ Favicon (online image) -->
+    <link rel="icon" type="image/jpeg"
+          href="ganza.png">
+
+    <!-- ✅ Optional (for better browser support) -->
+    <link rel="shortcut icon"
+          href="ganza.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Roboto:wght@300;400;500;700;900&family=Source+Serif+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        :root {
+            --primary: #ffffff; /* Pure White - Primary now */
+            --secondary: #000000; /* Pure Black - Secondary now */
+            --accent: #8B4513; /* Chocolate Brown - Accent only */
+            --light: #f9f9f9;
+            --dark: #111111;
+            --paper: #f5f5f5;
+            --text: #333333;
+            --border: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation - Clean & Minimal */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hamburger Menu - Centered */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 999;
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Buttons - Minimal Design */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(139, 69, 19, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* Hero Section - Clean & Dynamic */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(hsla(40, 27%, 98%, 0.969), rgba(15, 15, 15, 0.95)), 
+                        url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-headline {
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .hero-headline h1 {
+            font-size: 5.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            transform: translateY(100%);
+            animation: slideUp 1s forwards 0.3s;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero-headline .position {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            transform: translateY(100%);
+            animation: slideUp 1s forwards 0.6s;
+            margin-top: 1rem;
+            display: block;
+        }
+
+        .player-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 2px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item i {
+            color: var(--accent);
+        }
+
+        .typewriter-container {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            min-height: 70px;
+            font-family: 'Source Serif Pro', serif;
+            color: rgba(0, 0, 0, 0.8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .typewriter-text {
+            border-right: 3px solid var(--accent);
+            padding-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+
+        .hero-btns {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s forwards 1.8s;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Player Profile Section - Grid Layout */
+        .player-profile {
+            background-color: var(--light);
+            position: relative;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .profile-card {
+            background: var(--primary);
+            border-radius: 5px;
+            padding: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+            border-top: 5px solid var(--accent);
+            text-align: center;
+        }
+
+        .profile-card.reveal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .profile-card h3 {
+            color: var(--accent);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .attribute-list {
+            list-style: none;
+        }
+
+        .attribute-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            align-items: center;
+        }
+
+        .attribute-item:last-child {
+            border-bottom: none;
+        }
+
+        .attribute-name {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .attribute-value {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Stats Section - Animated Numbers */
+        .stats {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 8rem 2rem;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 3rem 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item.reveal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            color: var(--accent);
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        /* Newspaper Style Section */
+        .newspaper-section {
+            background-color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newspaper-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .newspaper-text {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            position: relative;
+            padding-right: 3rem;
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .newspaper-text p {
+            margin-bottom: 2rem;
+            text-align: justify;
+            color: #444;
+        }
+
+        .newspaper-image {
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 15px solid var(--primary);
+            transform: rotate(1deg);
+            transition: var(--transition);
+        }
+
+        .newspaper-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .newspaper-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .newspaper-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .newspaper-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            padding: 3rem;
+            border-left: 5px solid var(--accent);
+            background-color: rgba(139, 69, 19, 0.05);
+            margin: 3rem 0;
+            font-weight: 600;
+            position: relative;
+            color: #222;
+        }
+
+        .quote:before {
+            content: '"';
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background-color: var(--light);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .skill-card {
+            background: var(--primary);
+            padding: 3rem;
+            border-radius: 5px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+            text-align: center;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-bottom: 3px solid var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .skill-card.reveal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .skill-card h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.8s ease;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container:hover {
+            border: 5px solid rgba(139, 69, 19, 0.3);
+        }
+
+        .video-container.reveal {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .video-info h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* About Us Preview */
+        .about-preview {
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            margin-top: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 50%;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: var(--secondary);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+        }
+
+        .contact-form textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-logo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-top .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-top .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .footer-top .footer-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-top .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-top .footer-links a:hover:after {
+            width: 100%;
+        }
+
+        .footer-middle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .contact-details .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details .contact-item i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .contact-details .contact-item span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright p {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent);
+        }
+
+        .footer-legal span {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--accent); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-headline h1 {
+                font-size: 4.5rem;
+            }
+            
+            .newspaper-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .newspaper-text {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                padding-bottom: 3rem;
+            }
+            
+            .footer-middle {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-headline h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-headline .position {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .player-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .info-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .footer-logo:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-top .footer-links {
+                justify-content: center;
+            }
+            
+            .footer-middle {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-legal {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-headline .position {
+                font-size: 1.2rem;
+            }
+            
+            .typewriter-container {
+                font-size: 1.3rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .profile-card,
+            .skill-card {
+                padding: 2rem;
+            }
+            
+            .footer-top .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="hero">Home</a>
+            <a href="about  us .html">About us </a>
+             <a href="Gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-headline">
+                <h1>GANZA SERGE</h1>
+                <span class="position">Point Guard | Shooting Guard</span>
+            </div>
+            
+            <div class="player-info">
+                <div class="info-item">
+                    <i class="fas fa-ruler-vertical"></i>
+                    <span>1.75m / 5'9"</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-weight"></i>
+                    <span>70kg / 154lbs</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-t-shirt"></i>
+                    <span>Jersey #0</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-basketball-ball"></i>
+                    <span>PG/SG</span>
+                </div>
+            </div>
+            
+            <div class="typewriter-container">
+                <span id="typewriter-text"></span>
+            </div>
+            <div class="hero-btns">
+                <a href="#videos" class="btn">Watch Videos</a>
+                <a href="#profile" class="btn btn-outline">View Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player Profile Section -->
+    <section id="profile" class="player-profile">
+        <div class="container">
+            <div class="section-title">
+                <h2>Player Profile</h2>
+            </div>
+            <div class="profile-grid">
+                <div class="profile-card" id="profile-card-1">
+                    <h3><i class="fas fa-user-circle"></i> Basic Info</h3>
+                    <div class="attribute-list">
+                        <div class="attribute-item">
+                            <span class="attribute-name">Full Name</span>
+                            <span class="attribute-value">Ganza Serge</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Age</span>
+                            <span class="attribute-value">14</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Nationality</span>
+                            <span class="attribute-value">Rwandan</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Jersey Number</span>
+                            <span class="attribute-value">#0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-card" id="profile-card-2">
+                    <h3><i class="fas fa-chart-line"></i> Physical Attributes</h3>
+                    <div class="attribute-list">
+                        <div class="attribute-item">
+                            <span class="attribute-name">Height</span>
+                            <span class="attribute-value">1.75m / 5'9"</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Weight</span>
+                            <span class="attribute-value">70kg / 154 lbs</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Wingspan</span>
+                            <span class="attribute-value">1.85m / 6'1"</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Vertical Jump</span>
+                            <span class="attribute-value">32 inches</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-card" id="profile-card-3">
+                    <h3><i class="fas fa-trophy"></i> Key Stats</h3>
+                    <div class="attribute-list">
+                        <div class="attribute-item">
+                            <span class="attribute-name">Points Per Game</span>
+                            <span class="attribute-value">18.7</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Assists Per Game</span>
+                            <span class="attribute-value">7.3</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">Steals Per Game</span>
+                            <span class="attribute-value">1.8</span>
+                        </div>
+                        <div class="attribute-item">
+                            <span class="attribute-name">3-Point %</span>
+                            <span class="attribute-value">42%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Performance Metrics</h2>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item" id="stat1">
+                    <i class="fas fa-basketball-ball"></i>
+                    <div class="stat-number" data-target="18.7">0</div>
+                    <h4>Points Per Game</h4>
+                </div>
+                <div class="stat-item" id="stat2">
+                    <i class="fas fa-assistive-listening-systems"></i>
+                    <div class="stat-number" data-target="7.3">0</div>
+                    <h4>Assists Per Game</h4>
+                </div>
+                <div class="stat-item" id="stat3">
+                    <i class="fas fa-reply"></i>
+                    <div class="stat-number" data-target="2.1">0</div>
+                    <h4>Assist/Turnover Ratio</h4>
+                </div>
+                <div class="stat-item" id="stat4">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="stat-number" data-target="1.8">0</div>
+                    <h4>Steals Per Game</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newspaper Style Story Section -->
+    <section id="newspaper" class="newspaper-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Rise of Ganza Serge</h2>
+            </div>
+            <div class="newspaper-content">
+                <div class="newspaper-text">
+                    <p><strong>RUBAVU, Rwanda</strong> — The early morning darkness in Rwanda's capital is broken only by the rhythmic squeak of basketball shoes on polished hardwood. In a dimly lit gymnasium, Ganza Serge is already at work. It's 5:47 AM, and while the city sleeps, the 14-year-old guard is building his future one dribble at a time.</p>
+                    
+                    <div class="quote">
+                        "I don't chase highlights. I chase mastery. The highlight reel is just what happens when preparation meets opportunity."
+                    </div>
+                    
+                    <p>Born into a family of academics, Serge discovered basketball relatively late at age 12. While most elite prospects have been groomed since childhood, Serge's journey began with raw passion and an insatiable appetite for improvement. What he lacked in early training, he compensated for with basketball intelligence that coaches describe as "preternatural."</p>
+                    
+                    <p>His game is a study in controlled aggression. Standing at 1.75m (5'9"), Serge plays with a verticality that defies his measurements. His 32-inch vertical leap, currently being developed to 36+ inches through rigorous plyometric training, allows him to finish above the rim against taller defenders.</p>
+                    
+                    <p>But it's his mind that truly separates him. Serge doesn't just play basketball—he thinks it. He studies film with the analytical precision of a coach, breaking down defensive schemes and offensive sets. "He understands spacing and timing at a professional level already," notes Marshall of Marshall Skills Training, Serge's primary basketball development coach.</p>
+                    
+                    <p>Under Marshall's tutelage, Serge has transformed from a raw talent into a polished floor general. The Marshall Skills Training methodology focuses on skill translatability—every drill, every movement, every repetition designed to directly impact game performance.</p>
+                </div>
+                
+                <div class="newspaper-image">
+                    <img src="WhatsApp Image 2025-07-21 at 23.14.58.jpeg" alt="Ganza Serge in intense training session">
+                    <div class="newspaper-caption">Ganza Serge during morning training session at Kigali universe</div>
+
+        </div>
+        <div class="newspaper-image">
+                    <img src="WhatsApp Image 2025-07-22 at 20.16.05 (3).jpeg" alt="Ganza Serge in intense training session">
+                    <div class="newspaper-caption">Ganza Serge Noon  training session at Kigali universe</div>
+                </div>
+                <div class="newspaper-image">
+                    <img src="WhatsApp Image 2025-07-22 at 20.16.05 (1).jpeg" alt="Ganza Serge in intense training session">
+                    <div class="newspaper-caption">Ganza Serge  Late Nights training session at Kigali universe</div>
+                </div>
+                  <div class="newspaper-image">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.32.jpeg" alt="Ganza Serge in intense training session">
+                    <div class="newspaper-caption">Ganza Serge  UJAMAA TOURNAMENT FINAL  at Rubavu Giant of Africa Court </div>
+                </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills Breakdown</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4><i class="fas fa-bullseye"></i> Shooting</h4>
+                    <p>Elite three-point shooter with quick release. 42% from deep, 88% free throw percentage.</p>
+                </div>
+                <div class="skill-card">
+                    <h4><i class="fas fa-basketball-ball"></i> Ball Handling</h4>
+                    <p>Tight handle with both hands. Advanced crossovers and hesitation moves.</p>
+                </div>
+                <div class="skill-card">
+                    <h4><i class="fas fa-eye"></i> Court Vision</h4>
+                    <p>Exceptional ability to read defenses and anticipate plays. 7.3 assists per game.</p>
+                </div>
+                <div class="skill-card">
+                    <h4><i class="fas fa-shield-alt"></i> Defense</h4>
+                    <p>Pesky on-ball defender. 1.8 steals per game, disrupts passing lanes effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+      
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+<h1 style="font-family:'Oswald'; font-size:55px; font-weight:700; color:white; letter-spacing:2px;">GANZA SERGE</h1>
+                <div class="footer-links">
+                    <a href="#profile">𝐏𝐫𝐨𝐟𝐢𝐥𝐞</a>
+                    <a href="#stats">𝐒𝐭𝐚𝐭𝐬</a>
+                    <a href="#newspaper">𝐒𝐭𝐨𝐫𝐲</a>
+    
+      
+                </div>
+            </div>
+            
+            <div class="footer-middle">
+                <div class="footer-section">
+                    
+                        <h4   >𝐐𝐮𝐢𝐜𝐤 𝐋𝐢𝐧𝐤𝐬</h4>
+                    <div class="footer-column">
+                        <a href="#hero">𝐇𝐨𝐦𝐞</a>
+
+                        
+                        
+                        <a href="about  us .html">𝐀𝐛𝐨𝐮𝐭 𝐮𝐬</a>
+                        <a href="Gallery.html">𝐆𝐚𝐥𝐥𝐞𝐫𝐲</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝕮𝖔𝖓𝖙𝖆𝖈𝖙 𝕴𝖓𝖋𝖔</h4>
+                    <div class="contact-details footer-column">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>𝐜𝐨𝐧𝐭𝐚𝐜𝐭:𝐠𝐬𝐩𝐨𝐫𝐭𝐬𝐥𝐢𝐯𝐞𝟏𝐚@𝐠𝐦𝐚𝐢𝐥.𝐜𝐨𝐦</span>
+                        </div>
+                    
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>𝐑𝐮𝐛𝐚𝐯𝐮, 𝐑𝐰𝐚𝐧𝐝𝐚</span>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝐅𝐨𝐥𝐥𝐨𝐰 𝐌𝐞</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/_ganza0?igsh=cHI0bzZ6dnpxY3Jy" class="social-icon"><i class="fab fa-instagram"></i></a>
+                      
+                        <a href="#https://l.instagram.com/?u=http%3A%2F%2Fwww.youtube.com%2F%40ganza_0%3Ffbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnSt9HgmI-O4EdkTP27ndWdUcQUh8v5FdJG2geW5TUGqW-F34kAYPmAqWh7Ek_aem_t9GKWQWp7_N-UvooGrBieA&e=AT2Uz33oqBkR1W5zJUS6pvPdIg-55hRVx4UxVnOH4rWIzckLuRd5IivFAPNLb19uhcxOF1K1AyRdqQPsQAiZ8mH4v2Z9f2N2sV-AvWYj7hNL4jRzsUL4vDuxGw" class="social-icon"><i class="fab fa-youtube"></i></a>
+                  
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 𝟐𝟎𝟐𝟓 𝐆𝐚𝐧𝐳𝐚 𝐒𝐞𝐫𝐠𝐞 𝐁𝐚𝐬𝐤𝐞𝐭𝐛𝐚𝐥𝐥. 𝐀𝐥𝐥 𝐫𝐢𝐠𝐡𝐭𝐬 𝐫𝐞𝐬𝐞𝐫𝐯𝐞𝐝.</p>
+                </div>
+           
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter Effect
+        const typewriterText = document.getElementById('typewriter-text');
+        const texts = [
+            "Elite point guard with professional basketball IQ.",
+            "Trained under Marshall Skills Training methodology.",
+            "42% three-point shooter with quick release.",
+            "Proven leader on and off the court.",
+            "Dedicated to continuous improvement."
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                // Deleting text
+                typewriterText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Writing text
+                typewriterText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                // Pause at end of text
+                isDeleting = true;
+                setTimeout(typeWriter, 2000);
+                return;
+            }
+            
+            if (isDeleting && charIndex === 0) {
+                // Move to next text
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+            
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(typeWriter, speed);
+        }
+        
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Start typewriter after page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeWriter, 1500);
+        });
+        
+        // Scroll Animations
+        const revealElements = () => {
+            const elements = document.querySelectorAll('.profile-card, .stat-item, .skill-card, .video-container');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('reveal');
+                }
+            });
+        };
+        
+        // Animated Stats Counter
+        const animateStats = () => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateNumber = () => {
+                    if (current < target) {
+                        current += increment;
+                        stat.textContent = Math.round(current * 10) / 10;
+                        setTimeout(updateNumber, 20);
+                    } else {
+                        stat.textContent = target;
+                    }
+                };
+                
+                // Only start animation when element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(stat);
+            });
+        };
+        
+        // Initialize animations on scroll
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', () => {
+            revealElements();
+            animateStats();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.profile-card, .skill-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    </script>
+</body>
+</html>

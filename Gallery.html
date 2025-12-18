@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Ganza Serge Basketball</title>
+    <!-- ✅ Favicon (online image) -->
+    <link rel="icon" type="image/jpeg" href="ganza.png">
+    <link rel="shortcut icon" href="ganza.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Roboto:wght@300;400;500;700;900&family=Source+Serif+Pro:wght@300;400;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        :root {
+            --primary: #ffffff; /* Pure White - Primary now */
+            --secondary: #000000; /* Pure Black - Secondary now */
+            --accent: #8B4513; /* Chocolate Brown - Accent only */
+            --light: #f9f9f9;
+            --dark: #111111;
+            --paper: #f5f5f5;
+            --text: #333333;
+            --border: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation - Clean & Minimal */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hamburger Menu - Centered */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 999;
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Buttons - Minimal Design */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(139, 69, 19, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* Gallery Hero Section */
+        .gallery-hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)), 
+                        url('https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .gallery-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .gallery-hero p {
+            font-size: 1.4rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            background-color: var(--light);
+            padding: 3rem 0;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Photo Gallery Grid */
+        .photo-gallery {
+            background-color: var(--primary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item.revealed {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .item-overlay {
+            opacity: 1;
+        }
+
+        .item-category {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+
+        .item-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .item-date {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            background-color: var(--light);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .video-item.revealed {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .video-item:hover .video-play {
+            background-color: var(--primary);
+            color: var(--accent);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .video-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .video-duration {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Featured Gallery Section */
+        .featured-gallery {
+            background-color: var(--primary);
+        }
+
+        .featured-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .featured-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            transform: rotate(-2deg);
+            transition: var(--transition);
+            border: 15px solid var(--primary);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: var(--primary);
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: var(--primary);
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: var(--primary);
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-logo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-top .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-top .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .footer-top .footer-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-top .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-top .footer-links a:hover:after {
+            width: 100%;
+        }
+
+        .footer-middle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .contact-details .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details .contact-item i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .contact-details .contact-item span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright p {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .featured-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .featured-content {
+                text-align: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+            
+            .footer-middle {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            /* Hamburger Menu */
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu.active {
+                display: flex;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .gallery-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .footer-logo:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-top .footer-links {
+                justify-content: center;
+            }
+            
+            .footer-middle {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .footer-top .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="index.html#profile">Profile</a>
+            <a href="index.html#stats">Stats</a>
+            <a href="gallery.html" class="active">Gallery</a>
+            <a href="about.html">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1>VISUAL JOURNEY</h1>
+            <p>Explore the dedication, discipline, and passion through photos and videos of Ganza Serge's basketball journey</p>
+            <div class="hero-btns">
+                <a href="#photos" class="btn">View Photos</a>
+                <a href="#videos" class="btn btn-outline">Watch Videos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Media</button>
+          
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section id="photos" class="photo-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Photo Gallery</h2>
+            </div>
+            <div class="gallery-grid">
+                <!-- Training Images -->
+                <div class="gallery-item revealed" data-category="training">
+                    <img src="WhatsApp Image 2025-07-21 at 23.14.58.jpeg" alt="Morning Training Session">
+                    <div class="item-overlay">
+                        <span class="item-category">Training</span>
+                        <h3 class="item-title">Morning Workout</h3>
+                        <span class="item-date">5:47 AM • Kigali Universe</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item revealed" data-category="training">
+                    <img src="WhatsApp Image 2025-07-22 at 20.16.05 (1).jpeg" alt="Late Night Training">
+                    <div class="item-overlay">
+                        <span class="item-category">Training</span>
+                        <h3 class="item-title">Late Night Session</h3>
+                        <span class="item-date">9:30 PM • Kigali Universe</span>
+                    </div>
+                </div>
+                
+                <!-- Game Images -->
+                <div class="gallery-item revealed" data-category="games">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.32.jpeg" alt="Game Action">
+                    <div class="item-overlay">
+                        <span class="item-category">Games</span>
+                        <h3 class="item-title">UJAMAA TOURNAMENTS</h3>
+                        <span class="item-date">March 2025 • Giant of Africa</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item revealed" data-category="games">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.27.jpeg" alt="Team Celebration">
+                    <div class="item-overlay">
+                        <span class="item-category">Trainings</span>
+                        <h3 class="item-title">Personal Shooting Workout</h3>
+                        <span class="item-date">February 2025 • </span>
+                    </div>
+                </div>
+                
+                <!-- Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.30.jpeg" alt="Ball Handling Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Ball Handling Mastery</h3>
+                        <span class="item-date">January 2025 • Skills Academy</span>
+                    </div>
+                </div>
+                
+            
+                
+                <!-- More Training Images -->
+                <div class="gallery-item revealed" data-category="training">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.33 (1).jpeg" alt="Noon Training">
+                    <div class="item-overlay">
+                        <span class="item-category">Training</span>
+                        <h3 class="item-title">Noon Practice Session</h3>
+                        <span class="item-date">Kigali Universe • Daily Routine</span>
+                    </div>
+                </div>
+                 <!-- More Training Images -->
+                <div class="gallery-item revealed" data-category="training">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.31.jpeg" alt="Noon Training">
+                    <div class="item-overlay">
+                        <span class="item-category">Training</span>
+                        <h3 class="item-title">Noon Practice Session</h3>
+                        <span class="item-date">Kigali Universe • Daily Routine</span>
+                    </div>
+                </div>
+                
+                <!-- More Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.34.jpeg" alt="Shooting Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Shooting Practice</h3>
+                        <span class="item-date">November 2024 • Stella Maris</span>
+                    </div>
+                    
+                <!-- More Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.32 (1).jpeg" alt="Shooting Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Shooting Practice</h3>
+                        <span class="item-date">November 2024 • Stella Maris</span>
+                    </div>
+                    
+                <!-- More Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.23.jpeg" alt="Shooting Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Shooting Practice</h3>
+                        <span class="item-date">November 2024 • Kigali Universe</span>
+                
+                </div>
+                  <!-- More Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.29.jpeg" alt="Shooting Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Shooting Practice</h3>
+                        <span class="item-date">November 2024 • Stella Maris </span>
+                    </div>
+                       <!-- More Skills Images -->
+                <div class="gallery-item revealed" data-category="skills">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.33.jpeg" alt="Shooting Drills">
+                    <div class="item-overlay">
+                        <span class="item-category">Skills</span>
+                        <h3 class="item-title">Shooting Practice</h3>
+                        <span class="item-date">November 2024 • Stella Maris </span>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Gallery Section -->
+    <section class="featured-gallery">
+        <div class="container">
+            <div class="featured-container">
+                <div class="featured-content">
+                    <h2>BEHIND THE SCENES</h2>
+                    <p>Every photo tells a story of dedication, discipline, and relentless pursuit of excellence. The journey from early morning training sessions to high-pressure game moments is captured in this visual narrative.</p>
+                    <p>From the disciplined 5:47 AM starts to the focused late-night sessions, Ganza's commitment to basketball is evident in every frame. Each image represents hours of practice, study, and determination.</p>
+                    <p>The Marshall Skills Training methodology emphasizes not just physical skills, but also mental toughness and strategic thinking - qualities that are visible in these training moments.</p>
+                </div>
+                
+                <div class="featured-image">
+                    <img src="WhatsApp Image 2025-07-21 at 23.14.58.jpeg" alt="Featured Training Session">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+            <div class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="lightbox-nav">
+                <div class="lightbox-prev" id="lightboxPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-next" id="lightboxNext">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h1 class="footer-logo">GANZA SERGE</h1>
+                <div class="footer-links">
+                  
+                    <a href="gallery.html">𝐆𝐚𝐥𝐥𝐞𝐫𝐲</a>
+                </div>
+            </div>
+            
+            <div class="footer-middle">
+                <div class="footer-section">
+                    <h4>𝐐𝐮𝐢𝐜𝐤 𝐋𝐢𝐧𝐤𝐬</h4>
+                    <div class="footer-column">
+                        <a href="index.html">𝐇𝐨𝐦𝐞</a>
+                        <a href="index.html#profile">𝐏𝐥𝐚𝐲𝐞𝐫 𝐏𝐫𝐨𝐟𝐢𝐥𝐞</a>
+                        <a href="#videos">𝐇𝐢𝐠𝐡𝐥𝐢𝐠𝐡𝐭𝐬</a>
+                        <a href="about.html">𝐀𝐛𝐨𝐮𝐭 𝐔𝐬</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝕮𝖔𝖓𝖙𝖆𝖈𝖙 𝕴𝖓𝖋𝖔</h4>
+                    <div class="contact-details footer-column">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>𝐜𝐨𝐧𝐭𝐚𝐜𝐭:𝐠𝐬𝐩𝐨𝐫𝐭𝐬𝐥𝐢𝐯𝐞𝟏𝐚@𝐠𝐦𝐚𝐢𝐥.𝐜𝐨𝐦</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>𝐑𝐮𝐛𝐚𝐯𝐮, 𝐑𝐰𝐚𝐧𝐝𝐚</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝐅𝐨𝐥𝐥𝐨𝐰 𝐌𝐞</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/_ganza0?igsh=cHI0bzZ6dnpxY3Jy" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    
+                        <a href="https://www.youtube.com/@ganza_0" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 𝟐𝟎𝟐𝟓 𝐆𝐚𝐧𝐳𝐚 𝐒𝐞𝐫𝐠𝐞 𝐁𝐚𝐬𝐤𝐞𝐭𝐛𝐚𝐥𝐥. 𝐀𝐥𝐥 𝐫𝐢𝐠𝐡𝐭𝐬 𝐫𝐞𝐬𝐞𝐫𝐯𝐞𝐝.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || filterValue === itemCategory) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.classList.add('revealed');
+                        }, 100);
+                    } else {
+                        item.classList.remove('revealed');
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Reveal animations on scroll
+        const revealElements = () => {
+            const elements = document.querySelectorAll('.gallery-item, .video-item');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
+        
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+        let currentImageIndex = 0;
+        
+        // Open lightbox when clicking gallery images
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const title = item.querySelector('.item-title');
+                const date = item.querySelector('.item-date');
+                
+                if (img) {
+                    currentImageIndex = index;
+                    lightboxImg.src = img.src;
+                    lightboxCaption.innerHTML = `${title ? title.textContent : ''} <br> ${date ? date.textContent : ''}`;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // Open lightbox for video thumbnails
+        document.querySelectorAll('.video-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('.video-title');
+                const duration = item.querySelector('.video-duration');
+                
+                // For now, we'll show an alert
+                alert(`"${title ? title.textContent : 'Video'}" playback would open here\nDuration: ${duration ? duration.textContent : 'N/A'}`);
+            });
+        });
+        
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close lightbox when clicking outside image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Lightbox navigation
+        lightboxPrev.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+            
+            // Update caption
+            const item = galleryItems[currentImageIndex];
+            const title = item.querySelector('.item-title');
+            const date = item.querySelector('.item-date');
+            lightboxCaption.innerHTML = `${title ? title.textContent : ''} <br> ${date ? date.textContent : ''}`;
+        });
+        
+        lightboxNext.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+            
+            // Update caption
+            const item = galleryItems[currentImageIndex];
+            const title = item.querySelector('.item-title');
+            const date = item.querySelector('.item-date');
+            lightboxCaption.innerHTML = `${title ? title.textContent : ''} <br> ${date ? date.textContent : ''}`;
+        });
+        
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (e.key === 'ArrowLeft') {
+                    lightboxPrev.click();
+                } else if (e.key === 'ArrowRight') {
+                    lightboxNext.click();
+                }
+            }
+        });
+        
+        // Auto-reveal first set of items
+        setTimeout(() => {
+            const firstItems = document.querySelectorAll('.gallery-item:nth-child(-n+4), .video-item:nth-child(-n+2)');
+            firstItems.forEach(item => {
+                item.classList.add('revealed');
+            });
+        }, 300);
+    </script>
+</body>
+</html>

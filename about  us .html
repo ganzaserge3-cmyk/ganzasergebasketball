@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Ganza Serge Basketball</title>
+    <!-- ✅ Favicon -->
+    <link rel="icon" type="image/jpeg" href="ganza.png">
+    <link rel="shortcut icon" href="ganza.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Roboto:wght@300;400;500;700;900&family=Source+Serif+Pro:wght@300;400;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles - Matching Your Main Page */
+        :root {
+            --primary: #ffffff; /* Pure White - Primary now */
+            --secondary: #000000; /* Pure Black - Secondary now */
+            --accent: #8B4513; /* Chocolate Brown - Accent only */
+            --light: #f9f9f9;
+            --dark: #111111;
+            --paper: #f5f5f5;
+            --text: #333333;
+            --border: #e0e0e0;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation - Same as Your Main Page */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hamburger Menu - Centered */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 999;
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Buttons - Matching Your Design */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            border: 2px solid var(--secondary);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(139, 69, 19, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            min-height: 70vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.95)), 
+                        url('https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1900&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .about-hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .about-hero p {
+            font-size: 1.4rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            background-color: var(--light);
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Team Section */
+        .team-section {
+            background-color: var(--primary);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: var(--primary);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 2rem;
+        }
+
+        .team-info h4 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .team-info p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Values Section */
+        .values-section {
+            background-color: var(--light);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--primary);
+            border-radius: 10px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 3px solid transparent;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .value-card:hover .value-icon {
+            transform: rotate(360deg);
+        }
+
+        /* Partnership Section */
+        .partnership-section {
+            background-color: var(--primary);
+        }
+
+        .partnership-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .partnership-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 3rem;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .partner-card {
+            padding: 2.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .partner-card h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .partner-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(101, 50, 14, 0.9));
+            color: var(--primary);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta h2:after {
+            background-color: var(--primary);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .contact-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Footer - Matching Your Main Page Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-family: 'Oswald', sans-serif;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-logo:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-top .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-top .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            text-transform: uppercase;
+        }
+
+        .footer-top .footer-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-top .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-top .footer-links a:hover:after {
+            width: 100%;
+        }
+
+        .footer-middle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .contact-details .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-details .contact-item i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .contact-details .contact-item span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: var(--accent);
+            color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright p {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .footer-middle {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            /* Hamburger Menu */
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu.active {
+                display: flex;
+            }
+            
+            .team-grid,
+            .values-grid,
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .footer-logo:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-top .footer-links {
+                justify-content: center;
+            }
+            
+            .footer-middle {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .footer-top .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+ 
+            <a href="gallery.html">Gallery</a>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>ABOUT US</h1>
+            <p>Professional representation dedicated to developing and showcasing elite basketball talent</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission</h2>
+            </div>
+            <div class="mission-content">
+                <p>We exist to bridge the gap between exceptional basketball talent and the global basketball community. Our mission is to provide college and professional scouts with comprehensive, accurate, and professionally presented information that facilitates informed player evaluation and recruitment decisions.</p>
+                
+                <p>In an era where talent identification has become increasingly globalized, we believe young basketball prospects deserve representation that understands both their unique developmental journeys and the specific requirements of elite basketball programs worldwide.</p>
+                
+                <p>Our approach combines traditional scouting rigor with modern analytics, ensuring that each player's story is told not just through statistics, but through context, character evaluation, and demonstrated growth potential.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="WhatsApp Image 2025-12-19 at 01.44.33.jpeg" alt="Ganza Serge" class="team-image">
+                    <div class="team-info">
+                        <h4>Ganza Serge</h4>
+                        <span class="team-role">Player & Primary Focus</span>
+                        <p>14-year-old point guard with exceptional basketball IQ and dedication. Currently training under Marshall Skills Training methodology and developing under professional guidance.</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="WhatsApp Image 2025-12-19 at 00.43.02.jpeg" alt="David Marshall" class="team-image">
+                    <div class="team-info">
+                        <h4>Marshall Skills Training</h4>
+                        <span class="team-role">Skills Development Program</span>
+                        <p>Elite training program specializing in guard development and basketball IQ. Provides structured skill development focused on game translatability and professional preparation.</p>
+                    </div>
+                </div>
+                
+                <div class="team-card">
+                    <img src="workkk.avif" alt="Development Team" class="team-image">
+                    <div class="team-info">
+                        <h4>Development Specialists</h4>
+                        <span class="team-role">Physical & Skills Training</span>
+                        <p>Team of certified coaches specializing in basketball-specific athletic development, injury prevention, and skill mastery for young athletes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Integrity</h4>
+                    <p>We maintain the highest ethical standards in all player representations and provide honest, transparent assessments.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4>Development Focus</h4>
+                    <p>Our primary goal is holistic player development - preparing athletes for success at higher levels both on and off the court.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4>Partnership</h4>
+                    <p>We build long-term relationships with players, families, and programs based on trust, transparency, and mutual success.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Excellence</h4>
+                    <p>We maintain the highest standards in player evaluation, presentation, and professional conduct throughout the development process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Training & Development</h2>
+            </div>
+            <div class="partnership-content">
+                <p>We work with elite training programs and development specialists to ensure comprehensive player growth:</p>
+                
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <h4>Marshall Skills Training</h4>
+                        <p>Professional skill development program specializing in guard play, basketball IQ, and game-specific skill translation.</p>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <h4>Physical Development</h4>
+                        <p>Specialized athletic training focusing on basketball-specific strength, agility, vertical jump development, and injury prevention.</p>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <h4>Academic Support</h4>
+                        <p>Balancing athletic development with academic excellence to prepare for collegiate opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <h1 class="footer-logo">GANZA SERGE</h1>
+                <div class="footer-links">
+                  
+                    <a href="gallery.html">𝐆𝐚𝐥𝐥𝐞𝐫𝐲</a>
+              
+                </div>
+            </div>
+            
+            <div class="footer-middle">
+                <div class="footer-section">
+                    <h4>𝐐𝐮𝐢𝐜𝐤 𝐋𝐢𝐧𝐤𝐬</h4>
+                    <div class="footer-column">
+                        <a href="index.html">𝐇𝐨𝐦𝐞</a>
+                        
+                        <a href="about.html">𝐀𝐛𝐨𝐮𝐭 𝐔𝐬</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝕮𝖔𝖓𝖙𝖆𝖈𝖙 𝕴𝖓𝖋𝖔</h4>
+                    <div class="contact-details footer-column">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>𝐜𝐨𝐧𝐭𝐚𝐜𝐭:𝐠𝐬𝐩𝐨𝐫𝐭𝐬𝐥𝐢𝐯𝐞𝟏𝐚@𝐠𝐦𝐚𝐢𝐥.𝐜𝐨𝐦</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>𝐑𝐮𝐛𝐚𝐯𝐮, 𝐑𝐰𝐚𝐧𝐝𝐚</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>𝐅𝐨𝐥𝐥𝐨𝐰 𝐌𝐞</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/_ganza0?igsh=cHI0bzZ6dnpxY3Jy" class="social-icon"><i class="fab fa-instagram"></i></a>
+                   
+                        <a href="https://www.youtube.com/@ganza_0" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>© 𝟐𝟎𝟐𝟓 𝐆𝐚𝐧𝐳𝐚 𝐒𝐞𝐫𝐠𝐞 𝐁𝐚𝐬𝐤𝐞𝐭𝐛𝐚𝐥𝐥. 𝐀𝐥𝐥 𝐫𝐢𝐠𝐡𝐭𝐬 𝐫𝐞𝐬𝐞𝐫𝐯𝐞𝐝.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Only handle internal page anchors
+                if (href.includes('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = href.split('#')[1];
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Add active class to current page in nav
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop();
+            const mobileLinks = document.querySelectorAll('.mobile-menu a');
+            
+            mobileLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
